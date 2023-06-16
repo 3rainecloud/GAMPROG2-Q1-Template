@@ -53,31 +53,70 @@ public class InventoryManager : MonoBehaviour
 
     public void UseItem(ItemData data)
     {
-        // TODO
-        // If the item is a consumable, simply add the attributes of the item to the player.
-        // If it is equippable, get the equipment slot that matches the item's slot.
-        // Set the equipment slot's item as that of the used item
-    }
+        /* TODO
+           If the item is a consumable, simply add the attributes of the item to the player.
+           If it is equippable, get the equipment slot that matches the item's slot.
+           Set the equipment slot's item as that of the used item. */
 
+
+    }
    
     public void AddItem(string itemID)
     {
-        //TODO
-        //1. Cycle through every item in the database until you find the item with the same id.
-        //2. Get the index of the InventorySlot that does not have any Item and set its Item to the Item found
+        /*TODO
+          1. Cycle through every item in the database until you find the item with the same id.
+          2. Get the index of the InventorySlot that does not have any Item and set its Item to the Item found */
+           
+        for (int d = 0; d < itemDatabase.Count; d++)
+        {
+            if (inventorySlots == null)
+            {
+                AddItem(itemID);
+            }
+            else
+            {
+                return;
+            }
+        }
     }
 
     public int GetEmptyInventorySlot()
     {
-        //TODO
-        //Check which inventory slot doesn't have an Item and return its index
+        /*TODO
+          Check which inventory slot doesn't have an Item and return its index */
+
+        /*
+        for (int i = 0; i < 5; i++)
+        {
+            if (i < itemDatabase.Count)
+            {
+                inventorySlots[i].sprite = itemSetActive[itemDatabase[i]].GetComponent<Item>().itemScriptableObject.item_sprite;
+            }
+            else
+            {
+                inventorySlots[i].sprite = prazdnySlotImage;
+            }
+        }*/
+
         return -1;
     }
 
     public int GetEquipmentSlot(EquipmentSlotType type)
     {
-        //TODO
-        //Check which equipment slot matches the slot type and return its index
+        /*TODO
+          Check which equipment slot matches the slot type and return its index */
+        /*
+        for (int i = 0; i < 5; i++)
+        {
+            if (i < itemDatabase.Count)
+            {
+                inventorySlots[i].sprite = itemSetActive[inventoryList[i]].GetComponent<Item>().itemScriptableObject.item_sprite;
+            }
+            else
+            {
+                inventorySlots[i].itemIcon = InventorySlot.item;
+            }
+        }*/
         return -1;
     }
 }

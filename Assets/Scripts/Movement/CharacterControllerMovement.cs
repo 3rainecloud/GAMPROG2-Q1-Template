@@ -11,7 +11,18 @@ public class CharacterControllerMovement : MonoBehaviour
 
     private float gravity = -9.8f;
 
+    public float jumpSpeed = 15;
+    bool canJump = true;
+
     private CharacterController characterController;
+
+    public float playerHeight;
+    public LayerMask watIsGround;
+    bool groundD;
+
+    Vector3 moveVelocity;
+
+    Rigidbody rb;
 
     private void Awake()
     {
@@ -21,17 +32,28 @@ public class CharacterControllerMovement : MonoBehaviour
     private void Update()
     {
         Move();
+        if (Input.GetButtonDown("Jump"))
+        {
+            moveVelocity.y = jumpSpeed;
+        }
+        moveVelocity.y += gravity * Time.deltaTime;
+        characterController.Move(moveVelocity * Time.deltaTime);
+
+        if (!characterController.isGrounded)
+        {
+            canJump = false;
+        }
     }
 
     private void Move()
     {
-       float xMove = Input.GetAxis("Horizontal");
-       float zMove = Input.GetAxis("Vertical");
+        float xMove = Input.GetAxis("Horizontal");
+        float zMove = Input.GetAxis("Vertical");
 
         Vector3 moveDirection = (transform.right * xMove) + (transform.forward * zMove);
         moveDirection.y += gravity * Time.deltaTime * gravityScale;
         moveDirection *= moveSpeed * Time.deltaTime;
-       
+
         //Debug.Log(moveDirection);
         characterController.Move(moveDirection);
     }
